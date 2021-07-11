@@ -1,0 +1,9 @@
+{
+    "id": "yetanotherhalation",
+    "version": "1.0.0",
+    "authors": ["reina"],
+    "name": "Yet Another Halation",
+    "description": "Halation but for a different game.",
+    "dependencies": [],
+    "load-after": []
+}
