@@ -1,16 +1,10 @@
 extends Node2D
 
-const RESOURCE_PATH = "res://yetanotherhalation/"
 var modloader: Reference
 var msg = ""
 var console_opened = false
 var label
 var in_scene = false
-
-func create_item(path):
-    var script := load(path)
-    var mod_item := script.new()
-    mod_item.init(self)
 
 func load(modloader: Reference, mod_info, tree: SceneTree):
     self.modloader = modloader
