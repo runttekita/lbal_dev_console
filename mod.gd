@@ -32,11 +32,17 @@ func item_console(event):
         if console_opened:
             if event.scancode == KEY_ENTER:
                 msg = msg.to_lower()
+                var times = 1
                 var tokens = msg.split(" ")
+                if tokens.size() == 3:
+                    times = max(1, int(tokens[2]))
+                print(times)
                 if tokens[0] == "item":
-                    modloader.add_item(tokens[1])
+                    for i in times:
+                        modloader.add_item(tokens[1])
                 if tokens[0] == "symbol":
-                    modloader.add_symbol(tokens[1])
+                    for i in times:
+                        modloader.add_symbol(tokens[1])
                 msg = ""
                 console_opened = false
                 tree.paused = !tree.paused 
