@@ -5,11 +5,14 @@ var msg = ""
 var console_opened = false
 var label
 var in_scene = false
+var tree
 
 func load(modloader: Reference, mod_info, tree: SceneTree):
     self.modloader = modloader
+    self.tree = tree
     tree.get_root().add_child(self)
     label = Label.new()
+    pause_mode = Node.PAUSE_MODE_PROCESS
 
 func _input(event):
     if not in_scene and event is InputEventKey and event.is_pressed() and not event.is_echo():
@@ -23,6 +26,7 @@ func item_console(event):
         var key_typed = PoolByteArray([typed_event.unicode]).get_string_from_utf8()
         if event.scancode == KEY_QUOTELEFT:
             console_opened = !console_opened
+            tree.paused = !tree.paused 
             msg = ""
             return
         if console_opened:
@@ -35,6 +39,7 @@ func item_console(event):
                     modloader.add_symbol(tokens[1])
                 msg = ""
                 console_opened = false
+                tree.paused = !tree.paused 
             if event.scancode == KEY_BACKSPACE:
                 msg.erase(msg.length() - 1, 1)
             else:
